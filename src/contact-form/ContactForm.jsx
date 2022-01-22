@@ -18,7 +18,11 @@ class ContactForm extends Component {
     const contact = { ...this.state };
     contact.id = nanoid();
 
-    this.props.onCreateHandler(contact);
+    if (this.state.name && this.state.number) {
+      this.props.onCreateHandler(contact);
+    } else {
+      return alert("Enter name and number!");
+    }
   };
 
   render() {
