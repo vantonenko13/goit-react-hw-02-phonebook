@@ -36,12 +36,6 @@ class App extends Component {
   };
 
   contactCreationHandler = (contact) => {
-    const found = this.state.contacts.find(
-      (item) => item.name.toLowerCase() === contact.name.toLowerCase()
-    );
-    if (found) {
-      return alert(`${found.name} is already in contacts.`);
-    }
     this.setState((state) => ({ ...state, contacts: [...state.contacts, contact] }));
   };
 
@@ -58,7 +52,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm onCreateHandler={this.contactCreationHandler} />
+        <ContactForm onCreateHandler={this.contactCreationHandler} contacts={this.state.contacts} />
 
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChangeHandler={this.filterChangeHandler} />

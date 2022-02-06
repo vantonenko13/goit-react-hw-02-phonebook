@@ -18,7 +18,15 @@ class ContactForm extends Component {
     const contact = { ...this.state };
     contact.id = nanoid();
 
+    //
+    const found = this.props.contacts.find(
+      (item) => item.name.toLowerCase() === contact.name.toLowerCase()
+    );
+    if (found) {
+      return alert(`${found.name} is already in contacts.`);
+    }
     if (this.state.name && this.state.number) {
+      this.setState({ name: "", number: "" });
       this.props.onCreateHandler(contact);
     } else {
       return alert("Enter name and number!");
